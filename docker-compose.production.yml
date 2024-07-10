@@ -12,7 +12,7 @@ services:
     volumes:
       - pg_data_kittygram:/var/lib/postgresql/data
   backend:
-    image: danilch1rkov/kittygram_backend
+    image: ${DOCKER_USERNAME}/kittygram_backend
     env_file: .env
     volumes:
       - static_kittygram:/backend_static
@@ -21,13 +21,13 @@ services:
       - db
 
   frontend:
-    image: danilch1rkov/kittygram_frontend
+    image: ${DOCKER_USERNAME}/kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static_kittygram:/frontend_static
   gateway:
-    image: danilch1rkov/kittygram_gateway
+    image: ${DOCKER_USERNAME}/kittygram_gateway
     env_file: .env
     volumes:
       - static_kittygram:/static/
